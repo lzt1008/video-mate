@@ -2,6 +2,10 @@ import { remoteOpGuard } from './context'
 import { createOperationMap } from './operation'
 import { socket } from './socket'
 
+export function queryVideo(): HTMLVideoElement | null {
+  return [...document.querySelectorAll('video')].sort((a, b) => a.height - b.height)[0] || null
+}
+
 export function initSynchronizer() {
   const v = [...document.querySelectorAll('video')].sort((a, b) => a.height - b.height)[0]
 

@@ -6,5 +6,5 @@ declare global {
   var syncContext: Context
 }
 
-export * from 'chrome-types'
+export * from '@types/chrome'
 export {}

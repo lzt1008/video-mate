@@ -24,7 +24,7 @@ export default function CreateRoom() {
         </div>
       </CardContent>
       <CardFooter>
-        <Link to='/join' className="w-full mt-4">
+        <Link to='/room' className="w-full mt-4">
           <Button className="w-full">加入房间</Button>
         </Link>
       </CardFooter>

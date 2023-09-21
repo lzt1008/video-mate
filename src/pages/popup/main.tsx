@@ -6,6 +6,7 @@ import JoinRoom from './routes/JoinRoom'
 import CreateRoom from './routes/CreateRoom'
 import PopupLayout from './layout'
 import '@/style.css'
+import Room from './routes/Room'
 
 const router = createMemoryRouter([{
   path: '/',
@@ -22,6 +23,10 @@ const router = createMemoryRouter([{
     {
       path: '/create',
       element: <CreateRoom />,
+    },
+    {
+      path: '/room',
+      element: <Room />,
     },
   ],
 }])
