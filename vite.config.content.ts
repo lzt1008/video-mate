@@ -2,7 +2,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import { sharedConfig } from './vite.config'
 import packageJson from './package.json'
-import { isDev } from './lib/utils'
+import { isDev } from './scripts/utils'
 
 export default defineConfig({
   ...sharedConfig,

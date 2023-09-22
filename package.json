@@ -1,15 +1,16 @@
 {
   "name": "sync-client",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.3.1",
   "scripts": {
     "dev": "cross-env NODE_ENV=development run-p dev:*",
+    "dev:prepare": "esno scripts/prepare.ts",
     "dev:web": "vite",
     "dev:js": "npm run build:js -- --mode development",
     "dev:background": "vite build --config vite.config.background.ts",
-    "build": "cross-env NODE_ENV=production run-s build:web build:background build:js",
+    "build": "cross-env NODE_ENV=production run-s clear build:web build:prepare build:background build:js",
+    "build:prepare": "esno scripts/prepare.ts",
     "build:web": "vite build",
     "build:js": "vite build --config vite.config.content.ts",
     "build:background": "vite build --config vite.config.background.ts",
@@ -46,15 +47,19 @@
     "@typescript-eslint/parser": "^6.7.2",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "autoprefixer": "^10.4.15",
+    "chokidar": "^3.5.3",
     "chrome-types": "^0.1.231",
     "cross-env": "^7.0.3",
     "eslint": "^8.49.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "esno": "^0.17.0",
+    "fs-extra": "^11.1.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.30",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "webextension-polyfill": "^0.10.0"
   }
 }

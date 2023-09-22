@@ -1,8 +1,7 @@
-import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import { sharedConfig } from './vite.config'
 import packageJson from './package.json'
-import { isDev } from './lib/utils'
+import { isDev, r } from './scripts/utils'
 
 export default defineConfig({
   ...sharedConfig,
@@ -10,7 +9,7 @@ export default defineConfig({
     watch: isDev ? {} : undefined,
     emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, './src/background/index.ts'),
+      entry: r('./src/background/main.tsx'),
       name: packageJson.name,
       formats: ['iife'],
     },
