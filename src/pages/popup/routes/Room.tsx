@@ -1,5 +1,6 @@
-import { Info, Menu, Send } from 'lucide-react'
 import { useEffect } from 'react'
+import { sendMessage } from 'webext-bridge/popup'
+import { Info, Menu, Send } from 'lucide-react'
 import { OperationType } from '../types'
 import { Button } from '@/components/ui/button'
 import {
@@ -64,10 +65,10 @@ export default function Room() {
       <CardFooter className="flex justify-between gap-4">
         <Input />
         <Button className='shrink' onClick={async () => {
-          const tab = await chrome.tabs.query({ active: true })
-          console.log({ tab })
-          const response = await chrome.tabs.sendMessage(tab[0].id!, { op: OperationType.queryVideo })
-          console.log(response)
+          console.log(await sendMessage(OperationType.message, {
+            hello: 'world',
+          }))
+          console.log(await sendMessage(OperationType.queryVideo, {}))
         }}>
           <Send className='w-4 h-4' />
         </Button>

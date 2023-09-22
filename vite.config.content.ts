@@ -8,6 +8,7 @@ export default defineConfig({
   ...sharedConfig,
   build: {
     watch: isDev ? {} : undefined,
+    emptyOutDir: false,
     lib: {
       entry: resolve(__dirname, './lib/content-script.ts'),
       name: packageJson.name,

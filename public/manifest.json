@@ -10,14 +10,16 @@
     "scripting",
     "tabs"
   ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
   "content_scripts": [
     {
       "matches": [
-        "http://127.0.0.1/*",
-        "http://localhost/*"
+        "<all_urls>"
       ],
       "js": ["content-script.js"],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ]
 }

@@ -1,6 +1,6 @@
 export enum OperationType {
-  queryVideo,
-  joinRoom,
-  crateRoom,
-  message,
+  queryVideo = 'query-video',
+  joinRoom = 'join-room',
+  crateRoom = 'crate-room',
+  message = 'message',
 }

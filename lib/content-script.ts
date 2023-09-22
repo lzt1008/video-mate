@@ -1,3 +1,4 @@
+import { onMessage } from 'webext-bridge/content-script'
 import { queryVideo } from '../src/sync'
 import { OperationType } from '@/pages/popup/types'
 
@@ -9,29 +10,30 @@ import { OperationType } from '@/pages/popup/types'
 //   await chrome.tabs.sendMessage(tab.id!, { greeting: 'hello' })
 // }, 2000)
 
-interface Message {
-  op: OperationType
-  data: Record<string, any>
-}
+// interface Message {
+//   op: OperationType
+//   data: Record<string, any>
+// }
 
-const opMap = {
-  [OperationType.queryVideo]: () => {
+(() => {
+  const opMap = {
+    [OperationType.queryVideo]: () => {
+      return queryVideo()
+    },
+  }
+
+  console.log(opMap)
+  console.info('[video-mate] Hello world from content script')
+
+
+  onMessage(OperationType.queryVideo, () => {
     return queryVideo()
-  },
-}
-
-console.log(opMap)
-
-chrome.runtime.onMessage.addListener((message: Message, _, sendResponse) => {
-  console.log(message)
-
-  sendResponse({
-    video: opMap[message.op](),
   })
-  // console.log(sender, message)
-  // ;(async () => {
-  //   const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })
-  //   await chrome.tabs.sendMessage(tab.id!, { greeting: 'hello' })
-  // })()
-  // return true
-})
+
+  onMessage(OperationType.message, () => {
+    return {
+      from: 'content-script',
+    }
+  })
+
+})()

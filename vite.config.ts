@@ -19,13 +19,11 @@ export const sharedConfig: UserConfig = {
 export default defineConfig({
   ...sharedConfig,
   build: {
-    lib: {
-      entry: {
+    rollupOptions: {
+      input: {
         main: resolve(__dirname, 'index.html'),
         popup: resolve(__dirname, 'popup.html'),
       },
-      name: 'sync',
-      formats: ['es'],
     },
   },
 })
