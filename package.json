@@ -5,7 +5,7 @@
   "private": true,
   "packageManager": "pnpm@8.3.1",
   "scripts": {
-    "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
+    "dev": "cross-env NODE_ENV=development run-p dev:*",
     "dev:web": "vite",
     "dev:js": "npm run build:js -- --mode development",
     "dev:background": "vite build --config vite.config.background.ts",
@@ -46,6 +46,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "autoprefixer": "^10.4.15",
     "chrome-types": "^0.1.231",
+    "cross-env": "^7.0.3",
     "eslint": "^8.49.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
