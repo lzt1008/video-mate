@@ -1,15 +1,13 @@
 import { remoteOpGuard } from './context'
-import { createOperationMap } from './operation'
-import { socket } from './socket'
+import { createOperationMap } from './background/operation'
+import { socket } from './background/socket'
 
 export function queryVideo(): HTMLVideoElement | null {
   return [...document.querySelectorAll('video')].sort((a, b) => a.height - b.height)[0] || null
 }
 
 export function initSynchronizer() {
-  const v = [...document.querySelectorAll('video')].sort((a, b) => a.height - b.height)[0]
-
-  console.log(v)
+  const v = queryVideo()
 
   if (!v) return
 

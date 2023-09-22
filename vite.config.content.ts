@@ -10,7 +10,7 @@ export default defineConfig({
     watch: isDev ? {} : undefined,
     emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, './lib/content-script.ts'),
+      entry: resolve(__dirname, './src/content/index.ts'),
       name: packageJson.name,
       formats: ['iife'],
     },

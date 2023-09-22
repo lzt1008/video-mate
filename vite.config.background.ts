@@ -10,7 +10,7 @@ export default defineConfig({
     watch: isDev ? {} : undefined,
     emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, './lib/service-worker.ts'),
+      entry: resolve(__dirname, './src/background/index.ts'),
       name: packageJson.name,
       formats: ['iife'],
     },

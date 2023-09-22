@@ -1,10 +1,11 @@
 import { ChevronLeft, Copy } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 
 export default function CreateRoom() {
+  const { roomId } = useParams()
   return (
     <>
       <CardHeader>
@@ -20,7 +21,7 @@ export default function CreateRoom() {
           <Button variant='secondary' size='icon' className='absolute right-0 rounded-tl-none rounded-bl-none'>
             <Copy className='w-4 h-4' />
           </Button>
-          <Input className='font-mono shrink w-full pl-4' value="591 716 5621" readOnly />
+          <Input className='font-mono shrink w-full pl-4' value={roomId} readOnly />
         </div>
       </CardContent>
       <CardFooter>

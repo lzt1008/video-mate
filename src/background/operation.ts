@@ -1,4 +1,4 @@
-import { withRemote } from './context'
+import { withRemote } from '../context'
 
 export function createOperationMap(video: HTMLVideoElement) {
   const opMap = {

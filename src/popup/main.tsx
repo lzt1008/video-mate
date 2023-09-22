@@ -21,7 +21,7 @@ const router = createMemoryRouter([{
       element: <JoinRoom />,
     },
     {
-      path: '/create',
+      path: '/create/:roomId',
       element: <CreateRoom />,
     },
     {
