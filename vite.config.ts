@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import { isDev, r } from './scripts/utils'
+import { isDev, port, r } from './scripts/utils'
 
 export const sharedConfig: UserConfig = {
   root: r('src'),
@@ -20,6 +20,12 @@ export const sharedConfig: UserConfig = {
 
 export default defineConfig({
   ...sharedConfig,
+  server: {
+    port,
+    hmr: {
+      host: 'localhost',
+    },
+  },
   build: {
     outDir: r('extension/dist'),
     sourcemap: isDev ? 'inline' : false,
@@ -30,6 +36,7 @@ export default defineConfig({
       input: {
         main: r('src/options/index.html'),
         popup: r('src/popup/index.html'),
+        background: r('src/background/index.html'),
       },
     },
   },
