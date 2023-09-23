@@ -7,6 +7,7 @@ export default defineConfig({
   ...sharedConfig,
   build: {
     watch: isDev ? {} : undefined,
+    outDir: r('extension/dist/background'),
     emptyOutDir: false,
     lib: {
       entry: r('./src/background/main.tsx'),

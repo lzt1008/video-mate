@@ -4,23 +4,31 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "./dist/popup/index.html"
   },
   "permissions": [
     "scripting",
     "tabs",
-    "activeTab"
+    "activeTab",
+    "offscreen",
+    "nativeMessaging",
+    "webNavigation"
   ],
   "background": {
-    "service_worker": "service-worker.js"
+    "service_worker": "./dist/background/service-worker.js"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:3303; object-src 'self'"
   },
   "content_scripts": [
     {
       "matches": [
         "<all_urls>"
       ],
-      "js": ["content-script.js"],
+      "match_origin_as_fallback": true,
+      "js": ["./dist/content/content-script.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
 }
