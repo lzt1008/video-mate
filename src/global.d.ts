@@ -1,9 +1,11 @@
 /* eslint-disable no-var */
 /* eslint-disable vars-on-top */
-import type { Context } from './context'
+
+import type { Synchronizer } from './popup/types'
 
 declare global {
-  var syncContext: Context
+  var currentTabId: number
+  var sync: Synchronizer
 }
 
 export * from '@types/chrome'
