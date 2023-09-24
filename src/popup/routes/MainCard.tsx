@@ -1,4 +1,4 @@
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { sendMessage } from 'webext-bridge/popup'
 import { useEffect, useState } from 'react'
 import { OperationType } from '../types'
@@ -12,12 +12,21 @@ import {
 
 export default function MainCard() {
   const [hasVideo, setHasVideo] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     (async () => {
       const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })
+      globalThis.currentTabId = tab.id!
+
+      const room = await sendMessage(OperationType.queryRoom, {}, `content-script@${tab.id}`)
+      console.log(room)
+
+      if (room)
+        navigate(`/room/${room.id}`)
+
       const video = await sendMessage(OperationType.queryVideo, {}, `content-script@${tab.id}`)
-      console.log(video)
+
       if (video) setHasVideo(true)
     })()
   }, [])
@@ -35,8 +44,9 @@ export default function MainCard() {
               <Button className="w-full" variant="outline">加入房间</Button>
             </Link>
             <Button className="w-full" onClick={() => {
-              const id = crypto.randomUUID().split('-').at(-1)
-              redirect(`/create/${id}`)
+              const id = 'abc123'
+              // const id = crypto.randomUUID().split('-').at(-1)
+              navigate(`/create/${id}`)
             }}>创建房间</Button>
           </CardFooter>
         </>

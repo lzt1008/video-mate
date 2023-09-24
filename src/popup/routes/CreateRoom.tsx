@@ -1,11 +1,26 @@
-import { ChevronLeft, Copy } from 'lucide-react'
-import { Link, useParams } from 'react-router-dom'
+import { ChevronLeft, Copy, Loader } from 'lucide-react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { sendMessage } from 'webext-bridge/popup'
+import { useState } from 'react'
+import { OperationType } from '../types'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 
 export default function CreateRoom() {
   const { roomId } = useParams()
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+
+  const handleJoinRoom = async () => {
+    setLoading(true)
+    sendMessage(OperationType.joinRoom, { roomId: roomId! }, `content-script@${globalThis.currentTabId}`)
+      .then((room) => {
+        navigate(`/room/${room.id}`)
+      })
+      .finally(() => setLoading(false))
+  }
+
   return (
     <>
       <CardHeader>
@@ -25,9 +40,12 @@ export default function CreateRoom() {
         </div>
       </CardContent>
       <CardFooter>
-        <Link to='/room' className="w-full mt-4">
-          <Button className="w-full">加入房间</Button>
-        </Link>
+        <div className='w-full mt-4' onClick={handleJoinRoom}>
+          <Button className='w-full'>
+            加入房间
+            {loading && <Loader className='w-4 h-4 ml-2 animate-spin' />}
+          </Button>
+        </div>
       </CardFooter>
     </>
   )

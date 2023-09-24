@@ -25,7 +25,7 @@ const router = createMemoryRouter([{
       element: <CreateRoom />,
     },
     {
-      path: '/room',
+      path: '/room/:roomId',
       element: <Room />,
     },
   ],
