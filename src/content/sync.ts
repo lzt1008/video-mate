@@ -1,6 +1,6 @@
 import { sendMessage } from 'webext-bridge/content-script'
 import { io } from 'socket.io-client'
-import { createOperationMap } from '../background/operation'
+import { createOperationMap } from './operation'
 import type { Synchronizer } from '@/popup/types'
 import { remoteOpGuard } from '@/context'
 

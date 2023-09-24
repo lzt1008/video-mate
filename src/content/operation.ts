@@ -5,7 +5,7 @@ function calcDelay(timestamp: number) {
   const currentTimestamp = new Date().getTime()
   const delayMs = currentTimestamp - timestamp
   return delayMs / 1000
-}  
+}
 
 export function createOperationMap(video: HTMLVideoElement) {
   const opMap: Record<string, (data: Message) => void> = {

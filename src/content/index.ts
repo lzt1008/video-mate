@@ -1,8 +1,7 @@
 import { onMessage } from 'webext-bridge/content-script'
 import type { Message } from '@/popup/types'
 import { OperationType } from '@/popup/types'
-import { queryVideo } from '@/sync'
-import { initSynchronizer, joinRoom } from '@/content/sync'
+import { initSynchronizer, joinRoom, queryVideo } from '@/content/sync'
 
 console.info('[video-mate] Hello world from content script')
 
