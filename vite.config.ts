@@ -36,7 +36,6 @@ export default defineConfig({
       input: {
         main: r('src/options/index.html'),
         popup: r('src/popup/index.html'),
-        background: r('src/background/index.html'),
       },
     },
   },
